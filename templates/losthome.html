@@ -54,6 +54,30 @@ li a {
 li a:hover {
     background-color: DimGray;
 }
+/* unvisited link */
+a:link {
+    color: white;
+    text-align: center;
+    display: block;
+    background-color: DarkGray;
+    padding: 7px;
+    text-decoration: None;
+}
+/* visited link */
+a:visited {
+    color: white;
+    background-color: DarkGray;
+}
+/* mouse over link */
+a:hover {
+    color: white;
+    background-color: DimGray;
+}
+/* selected link */
+a:active {
+    color: white;
+    background-color: DarkGray;
+}
 </style>
 </head>
   <body>
@@ -62,17 +86,17 @@ li a:hover {
     </div>
 
     <ul>
-    <li><a href="/lost">Lost</a></li>
-    <li><a href="/found">Found</a></li>
+    <li><a href="/home">Lost</a></li>
+    <li><a href="/news">Found</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/about">About</a></li>
     </ul>
 
     <div id="nav">
     <br>Search Area<br>
-    <form action = "/lostfilter" method = "POST">
-        State:<br>
-        <select name = "state">
+    <form>
+      State:<br>
+      <select name = "state">
             <option>Select</option>
             <option value = "Alabama">Alabama</option>
             <option value = "Alaska">Alaska</option>
@@ -124,7 +148,7 @@ li a:hover {
             <option value = "West Virginia">West Virginia</option>
             <option value = "Wisconsin">Wisconsin</option>
             <option value = "Wyoming">Wyoming</option>
-        </select><br>
+      </select><br>
       City:<br>
       <input type="text" name="city"><br>
       Zip Code:<br>
@@ -133,11 +157,9 @@ li a:hover {
     </div>
 
     <div id="section">
-    {% for i in lostEntries %}
-        <h2>{{ i.itemname }}</h2>
-        <p>Location: {{ i.zone.city }}, {{ i.zone.state }} {{ i.zone.zip }}</p>
-        <p>{{ i.description }}</p>
-    {% endfor %}
+    <h1 style="text-align:center;">Lost Items</h1>
+    <p><a href="/newlostentry" target="_self">New Entry</a></p>
+    <p>Description</p>
     </div>
 
     <div id="footer">

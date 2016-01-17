@@ -67,7 +67,7 @@ def foundEntrySubmission():
 	new = Entry('found', request.form.get("itemname"), request.form.get("description"), zone, request.form.get("email"))
 	global foundEntries
 	foundEntries.append(new)
-	return render_template('foundentrysubmission')
+	return render_template('foundentrysubmission.html')
 
 if __name__ == "__main__":
 	app.run(debug = True)
