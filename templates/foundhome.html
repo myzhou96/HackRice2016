@@ -94,7 +94,7 @@ a:active {
 
     <div id="nav">
     <br>Search Area<br>
-    <form>
+    <form action = "/foundfilter" method = "POST">
       State:<br>
       <select name = "state">
             <option>Select</option>
@@ -158,8 +158,12 @@ a:active {
 
     <div id="section">
     <h1 style="text-align:center;">Found Items</h1>
-    <p><a href="/newfoundentry" target="_self">New Entry</a></p>
-    <p>Description</p>
+    <p><a href="/foundentry" target="_self">New Entry</a></p>
+    {% for i in foundEntries %}
+        <h2>{{ i.itemname }}</h2>
+        <p>Location: {{ i.zone.city }}, {{ i.zone.state }} {{ i.zone.zip }}</p>
+        <p>{{ i.description }}</p>
+    {% endfor %}
     </div>
 
     <div id="footer">
