@@ -54,6 +54,10 @@ def filterFound():
 def lostEntry():
 	return render_template('lostentry.html')
 
+@app.route('/foundentry')
+def foundEntry():
+	return render_template('foundentry.html')
+
 @app.route('/lostentrysubmission', methods = ["POST"])
 def lostEntrySubmission():
 	zone = Zone(request.form.get("state"), request.form.get("city"), request.form.get("zip"))
