@@ -6,8 +6,7 @@ lostEntries = []
 foundEntries = []
 
 class Entry(object):
-	def __init__(self, lf, itemname, description, zone, email):
-		self.lf = lf
+	def __init__(self, itemname, description, zone, email):
 		self.itemname = itemname
 		self.description = description
 		self.zone = zone
@@ -29,7 +28,7 @@ def found():
 	return render_template('foundhome.html', foundEntries = foundEntries)
 
 @app.route('/lostfilter', methods = ["POST"])
-def filterLost():
+def lostFilter():
 	global lostEntries
 	filtered = []
 	for i in lostEntries:
@@ -40,7 +39,7 @@ def filterLost():
 	return render_template('lostfilter.html', lostEntries = filtered)
 
 @app.route('/foundfilter', methods = ["POST"])
-def filterFound():
+def foundFilter():
 	global foundEntries
 	filtered = []
 	for i in foundEntries:
@@ -61,7 +60,7 @@ def foundEntry():
 @app.route('/lostentrysubmission', methods = ["POST"])
 def lostEntrySubmission():
 	zone = Zone(request.form.get("state"), request.form.get("city"), request.form.get("zip"))
-	new = Entry('lost', request.form.get("itemname"), request.form.get("description"), zone, request.form.get("email"))
+	new = Entry(request.form.get("itemname"), request.form.get("description"), zone, request.form.get("email"))
 	global lostEntries
 	lostEntries.append(new)
 	return render_template('lostentrysubmission.html')
@@ -69,10 +68,22 @@ def lostEntrySubmission():
 @app.route('/foundentrysubmission', methods = ["POST"])
 def foundEntrySubmission():
 	zone = Zone(request.form.get("state"), request.form.get("city"), request.form.get("zip"))
-	new = Entry('found', request.form.get("itemname"), request.form.get("description"), zone, request.form.get("email"))
+	new = Entry(request.form.get("itemname"), request.form.get("description"), zone, request.form.get("email"))
 	global foundEntries
 	foundEntries.append(new)
 	return render_template('foundentrysubmission.html')
+
+@app.route('/reply')
+def reply():
+	return render_template('email.html')
+
+@app.route('/contact')
+def contact():
+	return render_template('contact.html')
+
+@app.route('/about')
+def about():
+	return render_template('about.html')
 
 if __name__ == "__main__":
 	app.run(debug = True)

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<title>Lost N' Found</title>
+<title>Reunion</title>
 <style>
 #header {
-    background-color:LightSalmon;
-    color:black;
+    background-color:#34495e;
+    color:#ecf0f1;
     font-family: verdana;
     text-align:center;
     padding:5px;
+    letter-spacing: 3px;
 }
 #nav {
     line-height:30px;
@@ -20,18 +21,21 @@
     font-family: verdana; 
 }
 #section {
-    width:350px;
+    width:1000px;
     float:left;
     padding:10px;
+    margin-right: 18px;
+    margin-left: 18px;
     font-family: verdana; 
 }
 #footer {
-    background-color:LightSalmon;
-    color:black;
+    background-color:#34495e;
+    color:#ecf0f1;
     font-family: verdana;
     clear:both;
     text-align:center;
-    padding:5px; 
+    padding:5px;
+    font-size: 10px; 
 }
 ul {
     list-style-type: none;
@@ -54,29 +58,17 @@ li a {
 li a:hover {
     background-color: DimGray;
 }
-/* unvisited link */
-a:link {
-    color: white;
-    text-align: center;
-    display: block;
+a.class1:link, a.class1:visited {
+    display: inline-block;
     background-color: DarkGray;
-    padding: 7px;
-    text-decoration: None;
-}
-/* visited link */
-a:visited {
     color: white;
-    background-color: DarkGray;
+    padding: 8px 25px;
+    text-align: center; 
+    text-decoration: none;
+    font-size: 12px;
 }
-/* mouse over link */
-a:hover {
-    color: white;
+a.class1:hover, a.class1:active {
     background-color: DimGray;
-}
-/* selected link */
-a:active {
-    color: white;
-    background-color: DarkGray;
 }
 </style>
 </head>
@@ -158,11 +150,13 @@ a:active {
 
     <div id="section">
     <h1 style="text-align:center;">Found Items</h1>
-    <p><a href="/foundentry" target="_self">New Entry</a></p>
+    <p style="text-align:center;"><a href="/foundentry" class="class1" target="_self">New Entry</a></p>
     {% for i in foundEntries %}
         <h2>{{ i.itemname }}</h2>
         <p>Location: {{ i.zone.city }}, {{ i.zone.state }} {{ i.zone.zip }}</p>
         <p>{{ i.description }}</p>
+        <p>Contact: {{ i.email }}</p>
+        <p style = "text-align: right;"><a href = "/reply" class = "class1" target = "_self">Respond</a></p>
     {% endfor %}
     </div>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
 <head>
 <title>Reunion</title>
 <style>
@@ -11,19 +11,10 @@
     padding:5px;
     letter-spacing: 3px;
 }
-#nav {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:300px;
-    width:180px;
-    float:left;
-    padding:5px;
-    font-family: verdana; 
-}
 #section {
-    width:1000px;
+    width:500px;
+    float:left;
     padding:10px;
-    margin:auto;
     font-family: verdana; 
 }
 #footer {
@@ -56,21 +47,9 @@ li a {
 li a:hover {
     background-color: DimGray;
 }
-a.class1:link, a.class1:visited {
-    display: inline-block;
-    background-color: DarkGray;
-    color: white;
-    padding: 8px 25px;
-    text-align: center; 
-    text-decoration: none;
-    font-size: 12px;
-}
-a.class1:hover, a.class1:active {
-    background-color: DimGray;
-}
 </style>
 </head>
-  <body>
+<body>
     <div id="header">
     <h1>Reunion</h1>
     </div>
@@ -82,19 +61,25 @@ a.class1:hover, a.class1:active {
     <li><a href="/about">About</a></li>
     </ul>
 
-    <div id="section">
-    {% for i in foundEntries %}
-        <h2>{{ i.itemname }}</h2>
-        <p>Location: {{ i.zone.city }}, {{ i.zone.state }} {{ i.zone.zip }}</p>
-        <p>{{ i.description }}</p>
-        <p>Contact: {{ i.email }}</p>
-        <p style = "text-align: right;"><a href = "/reply" class = "class1" target = "_self">Respond</a></p>
-    {% endfor %}
-    </div>
+    <div id='section'>
+    <h2>Send E-mail:</h2>
+    <form action="MAILTO:{{ email }}" method="POST" enctype="text/plain">
+      Name:<br>
+      <input type="text" name="name"><br><br>
+      E-mail:<br>
+      <input type="text" name="mail"><br><br>
+      Item description (so we know the item is yours):<br><br>
+	  <textarea name = "description" rows = "10" cols = "50"></textarea><br><br>
+      Additional comments:<br>
+      <textarea name = "comments" rows = "5" cols = "50"></textarea><br><br>
+      <input type="submit" value = "Send">
+      <input type="reset" value = "Reset">
+    </form>
+	</div>
 
-    <div id="footer">
+	<div id="footer">
     Zack Li, Christina Xu, Michelle Zhou @ HackRice 2016
     </div>
 
-  </body>
+</body>
 </html>
