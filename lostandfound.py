@@ -19,6 +19,7 @@ class Zone(object):
 		self.city = city
 		self.zip = zipcode
 
+@app.route('/')
 @app.route('/lost')
 def lost():
 	return render_template('losthome.html', lostEntries = lostEntries)
